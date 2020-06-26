@@ -1,0 +1,16 @@
+<div class="example-container">
+    <h1>Inicio de sesión</h1>
+    <hr>
+    <form role="form">
+        <mat-form-field class="input-half-width">
+            <input matInput type="text" placeholder="Correo electrónico" name="email" [(ngModel)]="email">
+        </mat-form-field>
+        <br>
+        <mat-form-field class="input-half-width">
+            <input matInput type="password" placeholder="Contraseña" name="pass" [(ngModel)]="pass">
+        </mat-form-field>
+        <br>
+        <button mat-raised-button color="primary" (click)="login()">Iniciar sesión</button>
+    </form>
+</div>
+  
