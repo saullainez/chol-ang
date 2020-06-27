@@ -22,6 +22,7 @@ export class AuthService extends GlobalService {
   
   /**
    * Cerrar sesión
+   * @param session sesión activa
    */
   logout(session: Session) {
     return this.httpClient.post(this.globalclass.uri_api + 'logout', session, this.options);
