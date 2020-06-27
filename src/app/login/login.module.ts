@@ -9,6 +9,8 @@ import { FormsModule } from '@angular/forms';
 import {MatInputModule} from '@angular/material/input'; 
 import {MatButtonModule} from '@angular/material/button'; 
 import { HttpClientModule } from '@angular/common/http'; 
+import { CoreModule } from '../core/core.module';
+
 
 
 @NgModule({
@@ -20,7 +22,8 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     MatInputModule,
     MatButtonModule,
-    HttpClientModule
+    HttpClientModule,
+    CoreModule
   ]
 })
 export class LoginModule { }

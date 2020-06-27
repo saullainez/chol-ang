@@ -3,6 +3,8 @@ import { AuthService } from '../core/services/auth.service';
 import { Session } from '../core/models/session';
 import { StorageService } from '../core/services/storage.service';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { SnackComponent } from '../core/snack/snack.component';
 
 @Component({
   selector: 'app-login',
@@ -17,8 +19,10 @@ export class LoginComponent implements OnInit {
     private authService: AuthService,
     private session: Session,
     private storageService: StorageService,
-    private router: Router
-  ) { }
+    private router: Router,
+    private snackBar: MatSnackBar
+  ) {
+   }
 
   ngOnInit(): void {
   }
@@ -31,10 +35,11 @@ export class LoginComponent implements OnInit {
         this.session.email = res['email'];
         this.storageService.setCurrentSession(this.session);
         this.router.navigateByUrl('/');
-
+      }else{
+        this.snackBar.openFromComponent(SnackComponent, {data: 'Credenciales inválidas |error', duration: 5000, horizontalPosition: 'center', panelClass: ['error-snackbar']});
       }
     },(err:any) => {
-      console.log(err);
+      this.snackBar.openFromComponent(SnackComponent, {data: err + ' |error', duration: 5000, horizontalPosition: 'center', panelClass: ['err-snackbar']});
     })
   }
 

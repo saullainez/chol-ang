@@ -1,0 +1,24 @@
+
+<div *ngIf="type == 'error'; then errorTemplate else otherTemplate">
+
+</div>
+<ng-template #errorTemplate>
+    <span  class="content-snack">
+        <i class="fas fa-times-circle"></i> {{message}}
+    </span>
+</ng-template>
+<ng-template #otherTemplate>
+    <div *ngIf="type == 'success'; then successTemplate else warningTemplate"></div>
+
+</ng-template>
+<ng-template #successTemplate>
+    <span  class="content-snack">
+        <i class="fas fa-check-circle"></i> {{message}}
+    </span>
+</ng-template>
+<ng-template #warningTemplate>
+    <span  class="content-snack">
+        <i class="fas fa-exclamation-circle"></i>  {{message}}
+    </span>
+</ng-template>
+
