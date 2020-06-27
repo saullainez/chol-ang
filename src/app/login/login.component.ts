@@ -5,6 +5,7 @@ import { StorageService } from '../core/services/storage.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SnackComponent } from '../core/snack/snack.component';
+import { Globalclass } from '../core/models/globalclass';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,8 @@ export class LoginComponent implements OnInit {
     private session: Session,
     private storageService: StorageService,
     private router: Router,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private globalclass: Globalclass
   ) {
    }
 
@@ -36,10 +38,12 @@ export class LoginComponent implements OnInit {
         this.storageService.setCurrentSession(this.session);
         this.router.navigateByUrl('/');
       }else{
-        this.snackBar.openFromComponent(SnackComponent, {data: 'Credenciales inválidas |error', duration: 5000, horizontalPosition: 'center', panelClass: ['error-snackbar']});
+        this.snackBar.openFromComponent(SnackComponent, 
+          {data: 'Credenciales inválidas' + this.globalclass.snackMsjError, duration: this.globalclass.snackDuration, horizontalPosition: 'center', panelClass: [this.globalclass.snackError]});
       }
     },(err:any) => {
-      this.snackBar.openFromComponent(SnackComponent, {data: err + ' |error', duration: 5000, horizontalPosition: 'center', panelClass: ['err-snackbar']});
+      this.snackBar.openFromComponent(SnackComponent, 
+        {data: err + this.globalclass.snackMsjError, duration: this.globalclass.snackDuration, horizontalPosition: 'center', panelClass: [this.globalclass.snackError]});
     })
   }
 
