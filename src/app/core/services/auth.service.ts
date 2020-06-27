@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { GlobalService } from '../services/global.service';
+import { Session } from '../models/session';
 
 
 @Injectable({
@@ -14,20 +15,15 @@ export class AuthService extends GlobalService {
    */
   login(email: string, pass: string) {
     return this.httpClient.post(this.globalclass.uri_api + 'login', {
-      grant_type: 'password',
-      client_id: '2',
-      client_secret: '4eVnS5rRCp0IpiKsEloppD9GZrvH9EklOLyAth2C',
-      username: email,
+      email: email,
       password: pass,
-      scope: ''
     }, this.options);
   }  
   
   /**
-   * Cerrar sesión, eliminar el token de acceso
+   * Cerrar sesión
    */
-  logout() {
-    this.options.headers.Authorization = 'Bearer ' + localStorage.getItem('access_token');
-    return this.httpClient.get(this.globalclass.uri_api + '/token/revoke', this.options);
+  logout(session: Session) {
+    return this.httpClient.post(this.globalclass.uri_api + 'logout', session, this.options);
   }
 }

@@ -9,6 +9,7 @@ import { GlobalService } from './core/services/global.service';
 import { Globalclass } from './core/models/globalclass';
 import { AuthGuardService } from './core/guard/auth-guard.service';
 import { GuestGuardService } from './core/guard/guest-guard.service';
+import { Session } from './core/models/session';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import { GuestGuardService } from './core/guard/guest-guard.service';
     HttpClientModule,
     BrowserAnimationsModule
   ],
-  providers: [GlobalService, Globalclass, AuthGuardService, GuestGuardService],
+  providers: [GlobalService, Globalclass, AuthGuardService, GuestGuardService, Session],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

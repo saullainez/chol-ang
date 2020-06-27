@@ -1,6 +1,7 @@
 export class Session {
-    public user_name: string;
+    public username: string;
     public token?: string;
     public role?: string;
-    public expires_at?: string
+    public expires_at?: string;
+    public email?: string
 }

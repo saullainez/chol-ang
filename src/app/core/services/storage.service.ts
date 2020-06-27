@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Session } from '../models/session';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +8,7 @@ import { Session } from '../models/session';
 export class StorageService {
   private currentSession: Session = null;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   setCurrentSession(session: Session){
     this.currentSession = session;
@@ -38,5 +39,10 @@ export class StorageService {
   getCurrentToken(): string {
     const session = this.getCurrentSession();
     return session && session.token && this.isValidSession() ? session.token : null;
+  }
+
+  logout(): void {
+    this.removeCurrentSession();
+    this.router.navigateByUrl('login');
   }
 }

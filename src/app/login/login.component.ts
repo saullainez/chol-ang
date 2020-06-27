@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../core/services/auth.service';
+import { Session } from '../core/models/session';
+import { StorageService } from '../core/services/storage.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,14 +14,25 @@ export class LoginComponent implements OnInit {
   pass : string
 
   constructor(
-    private authService: AuthService
+    private authService: AuthService,
+    private session: Session,
+    private storageService: StorageService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
   }
   login(){
     this.authService.login(this.email, this.pass).subscribe((res:any) => {
-      console.log(res);
+      if(res['validate']){
+        this.session.username = res['username'];
+        this.session.token = res['token'];
+        this.session.expires_at = res['expires_at'];
+        this.session.email = res['email'];
+        this.storageService.setCurrentSession(this.session);
+        this.router.navigateByUrl('/');
+
+      }
     },(err:any) => {
       console.log(err);
     })
