@@ -13,8 +13,8 @@ import { Globalclass } from '../core/models/globalclass';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  email : string;
-  pass : string
+  email : string = "";
+  pass : string = "";
 
   constructor(
     private authService: AuthService,
@@ -29,22 +29,28 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
   login(){
-    this.authService.login(this.email, this.pass).subscribe((res:any) => {
-      if(res['validate']){
-        this.session.username = res['username'];
-        this.session.token = res['token'];
-        this.session.expires_at = res['expires_at'];
-        this.session.email = res['email'];
-        this.storageService.setCurrentSession(this.session);
-        this.router.navigateByUrl('/');
-      }else{
+    if(this.email != "" && this.pass != ""){
+      this.authService.login(this.email, this.pass).subscribe((res:any) => {
+        if(res['validate']){
+          this.session.username = res['username'];
+          this.session.token = res['token'];
+          this.session.expires_at = res['expires_at'];
+          this.session.email = res['email'];
+          this.storageService.setCurrentSession(this.session);
+          this.router.navigateByUrl('/');
+        }else{
+          this.snackBar.openFromComponent(SnackComponent, 
+            {data: 'Credenciales inválidas' + this.globalclass.snackMsjError, duration: this.globalclass.snackDuration, horizontalPosition: 'center', panelClass: [this.globalclass.snackError]});
+        }
+      },(err:any) => {
         this.snackBar.openFromComponent(SnackComponent, 
-          {data: 'Credenciales inválidas' + this.globalclass.snackMsjError, duration: this.globalclass.snackDuration, horizontalPosition: 'center', panelClass: [this.globalclass.snackError]});
-      }
-    },(err:any) => {
+          {data: err + this.globalclass.snackMsjError, duration: this.globalclass.snackDuration, horizontalPosition: 'center', panelClass: [this.globalclass.snackError]});
+      })
+    }else{
       this.snackBar.openFromComponent(SnackComponent, 
-        {data: err + this.globalclass.snackMsjError, duration: this.globalclass.snackDuration, horizontalPosition: 'center', panelClass: [this.globalclass.snackError]});
-    })
+        {data: 'Debe llenar todos los campos' + this.globalclass.snackMsjWarning, duration: this.globalclass.snackDuration, horizontalPosition: 'center', panelClass: [this.globalclass.snackWarning]});
+    }
+
   }
 
 }
