@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MaterialModule } from './material/material.module';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,7 +12,7 @@ import { Globalclass } from './core/models/globalclass';
 import { AuthGuardService } from './core/guard/auth-guard.service';
 import { GuestGuardService } from './core/guard/guest-guard.service';
 import { Session } from './core/models/session';
-import {MatSnackBarModule} from '@angular/material/snack-bar'; 
+import { ComponentsModule } from './components/components.module';
 
 @NgModule({
   declarations: [
@@ -22,8 +23,9 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatSnackBarModule,
-    CommonModule
+    MaterialModule,
+    CommonModule,
+    ComponentsModule
   ],
   providers: [GlobalService, Globalclass, AuthGuardService, GuestGuardService, Session],
   bootstrap: [AppComponent]
