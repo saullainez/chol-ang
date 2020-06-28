@@ -15,7 +15,7 @@ export class DatatableComponent implements OnInit {
 
   //Parametros de entrada
   @Input() Title: string; //recibe el titulo de la tabla
-  @Input() columns: any; //recibe los datos del datatable
+  @Input() columns: any; //recibe las columnas del datatable
   @Input() data: any; //recibe los datos del datatable
   @Input() showFilter = true; //recibe true o false si se desea ver el filtro de busqueda
   @Input() showEdit = true; //true o false para ver la opcion de editar
