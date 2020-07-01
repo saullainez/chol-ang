@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
           this.session.expires_at = res['expires_at'];
           this.session.email = res['email'];
           this.storageService.setCurrentSession(this.session);
-          this.router.navigateByUrl('/');
+          this.router.navigateByUrl('select-module');
         }else{
           this.snackBar.openFromComponent(SnackComponent, 
             {data: 'Credenciales inválidas' + this.globalclass.snackMsjError, duration: this.globalclass.snackDuration, horizontalPosition: 'center', panelClass: [this.globalclass.snackError]});

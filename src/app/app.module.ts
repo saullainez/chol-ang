@@ -13,6 +13,7 @@ import { AuthGuardService } from './core/guard/auth-guard.service';
 import { GuestGuardService } from './core/guard/guest-guard.service';
 import { Session } from './core/models/session';
 import { ComponentsModule } from './components/components.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ComponentsModule } from './components/components.module';
     BrowserAnimationsModule,
     MaterialModule,
     CommonModule,
-    ComponentsModule
+    ComponentsModule,
+    FlexLayoutModule
   ],
   providers: [GlobalService, Globalclass, AuthGuardService, GuestGuardService, Session],
   bootstrap: [AppComponent]
