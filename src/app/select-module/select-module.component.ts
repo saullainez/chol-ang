@@ -9,6 +9,7 @@ import {Observable} from 'rxjs';
 import { ModuleSession } from '../core/models/module-session';
 import { StorageService } from '../core/services/storage.service';
 import { Router } from '@angular/router';
+import { AuthService } from '../core/services/auth.service';
 
 @Component({
   selector: 'app-select-module',
@@ -22,6 +23,8 @@ export class SelectModuleComponent implements OnInit {
   centered = false;
   disabled = false;
   unbounded = false;
+  role: string;
+  count: number;
 
   radius: number = 150;
   color: string = "rgb(83, 109, 145)";
@@ -32,14 +35,17 @@ export class SelectModuleComponent implements OnInit {
     private globalclass: Globalclass, 
     media: MediaObserver,
     private storageService: StorageService,
-    private router: Router
+    private router: Router,
+    private authService: AuthService,
   ) {
     this.media$ = media.asObservable();
    }
 
   ngOnInit() {
-    this.moduleService.getModules().subscribe((data: any) => {
+    this.role = this.storageService.getUserRole();
+    this.moduleService.getUserModules(this.role).subscribe((data: any) => {
       this.modules = data;
+      this.count = data.length;
     },(err:any) => {
       this.snackBar.openFromComponent(SnackComponent, 
         {data: err + this.globalclass.snackMsjError, duration: this.globalclass.snackDuration, horizontalPosition: 'center', panelClass: [this.globalclass.snackError]});
@@ -52,6 +58,14 @@ export class SelectModuleComponent implements OnInit {
     this.moduleSession.description = moduleDescription;
     this.storageService.setModuleSession(this.moduleSession);
     this.router.navigateByUrl(uri);
+  }
+
+  logout(){
+    this.authService.logout(this.storageService.getCurrentSession()).subscribe((res:any) => {
+      this.storageService.logout();
+    }, (err:any) => {
+      console.log(err);
+    })
   }
 
 }
