@@ -10,6 +10,7 @@ import { ModuleSession } from '../core/models/module-session';
 import { StorageService } from '../core/services/storage.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../core/services/auth.service';
+import { Rolemodule } from '../core/models/rolemodule';
 
 @Component({
   selector: 'app-select-module',
@@ -37,6 +38,7 @@ export class SelectModuleComponent implements OnInit {
     private storageService: StorageService,
     private router: Router,
     private authService: AuthService,
+    private roleModule: Rolemodule
   ) {
     this.media$ = media.asObservable();
    }
@@ -46,6 +48,9 @@ export class SelectModuleComponent implements OnInit {
     this.moduleService.getUserModules(this.role).subscribe((data: any) => {
       this.modules = data;
       this.count = data.length;
+      this.roleModule.prefix = this.role;
+      this.roleModule.modules = data;
+      this.storageService.setRoleModule(this.roleModule);
     },(err:any) => {
       this.snackBar.openFromComponent(SnackComponent, 
         {data: err + this.globalclass.snackMsjError, duration: this.globalclass.snackDuration, horizontalPosition: 'center', panelClass: [this.globalclass.snackError]});
