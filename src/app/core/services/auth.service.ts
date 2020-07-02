@@ -10,12 +10,12 @@ export class AuthService extends GlobalService {
 
     /**
    * Loguea y obtiene el token de acceso
-   * @param email correo electrónico
+   * @param username nombre de usuario
    * @param pass contraseña
    */
-  login(email: string, pass: string) {
+  login(username: string, pass: string) {
     return this.httpClient.post(this.globalclass.uri_api + 'login', {
-      email: email,
+      username: username,
       password: pass,
     }, this.options);
   }  
