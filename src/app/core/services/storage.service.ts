@@ -43,6 +43,11 @@ export class StorageService {
     return session && session.token && this.isValidSession() ? session.token : null;
   }
 
+  getUserRole(): string {
+    const userRole = this.getCurrentSession();
+    return userRole && userRole.role && this.isValidSession() ? userRole.role : null;
+  }
+
   setModuleSession(moduleSession: ModuleSession) {
     this.moduleSession = moduleSession;
     localStorage.setItem('module', JSON.stringify(moduleSession));
