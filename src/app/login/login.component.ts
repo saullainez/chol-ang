@@ -13,7 +13,7 @@ import { Globalclass } from '../core/models/globalclass';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  email : string = "";
+  username : string = "";
   pass : string = "";
 
   constructor(
@@ -29,15 +29,16 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
   login(){
-    if(this.email != "" && this.pass != ""){
-      this.authService.login(this.email, this.pass).subscribe((res:any) => {
+    if(this.username != "" && this.pass != ""){
+      this.authService.login(this.username, this.pass).subscribe((res:any) => {
         if(res['validate']){
           this.session.username = res['username'];
           this.session.token = res['token'];
           this.session.expires_at = res['expires_at'];
           this.session.email = res['email'];
+          this.session.role = res['role_prefix'];
           this.storageService.setCurrentSession(this.session);
-          this.router.navigateByUrl('/');
+          this.router.navigateByUrl('select-module');
         }else{
           this.snackBar.openFromComponent(SnackComponent, 
             {data: 'Credenciales inválidas' + this.globalclass.snackMsjError, duration: this.globalclass.snackDuration, horizontalPosition: 'center', panelClass: [this.globalclass.snackError]});
