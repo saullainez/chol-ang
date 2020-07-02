@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Session } from '../models/session';
 import { Router } from '@angular/router';
 import { ModuleSession } from '../models/module-session';
+import { Rolemodule } from '../models/rolemodule';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +10,7 @@ import { ModuleSession } from '../models/module-session';
 export class StorageService {
   private currentSession: Session = null;
   private moduleSession: ModuleSession = null;
+  private roleModule: Rolemodule = null;
 
   constructor(private router: Router) { }
 
@@ -61,6 +63,23 @@ export class StorageService {
   getCurrentModuleName(): string {
     const moduleSession = this.getModuleSession();
     return moduleSession && moduleSession.name ? moduleSession.name : null;
+  }
+
+  setRoleModule(rolemodule: Rolemodule){
+    this.roleModule = rolemodule;
+    localStorage.setItem('roleModule', JSON.stringify(rolemodule));
+  }
+
+  getRoleModule() : Rolemodule {
+    const roleModule = localStorage.getItem('roleModule');
+    return roleModule ? <Rolemodule>JSON.parse(roleModule) : null;
+  }
+   
+  roleHasModule(moduleName: string): boolean{
+    const roleModule = this.getRoleModule();
+    const find = roleModule.modules.find(module => module.uri == moduleName )
+    return find ? true : false
+
   }
 
   logout(): void {
