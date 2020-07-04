@@ -15,6 +15,9 @@ export class AuthService extends GlobalService {
    */
   login(username: string, pass: string) {
     return this.httpClient.post(this.globalclass.uri_api + 'login', {
+      grant_type: this.globalclass.grant_type,
+      client_id: this.globalclass.client_id,
+      client_secret: this.globalclass.client_secret,
       username: username,
       password: pass,
     }, this.options);

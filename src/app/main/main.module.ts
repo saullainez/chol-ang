@@ -8,6 +8,7 @@ import { NavComponent } from './nav/nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ComponentsModule } from '../components/components.module';
+import { BlockUIModule } from 'ng-block-ui';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { ComponentsModule } from '../components/components.module';
     MainRoutingModule,
     LayoutModule,
     MaterialModule,
-    ComponentsModule
+    ComponentsModule,
+    BlockUIModule.forRoot()
   ]
 })
 export class MainModule { }
