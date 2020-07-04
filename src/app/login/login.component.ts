@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SnackComponent } from '../core/snack/snack.component';
 import { Globalclass } from '../core/models/globalclass';
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
 
 @Component({
   selector: 'app-login',
@@ -13,6 +14,7 @@ import { Globalclass } from '../core/models/globalclass';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  @BlockUI() blockUI: NgBlockUI;
   username : string = "";
   pass : string = "";
 
@@ -29,6 +31,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
   login(){
+    this.blockUI.start("Iniciando sesión");
     if(this.username != "" && this.pass != ""){
       this.authService.login(this.username, this.pass).subscribe((res:any) => {
         if(res['validate']){
@@ -38,16 +41,20 @@ export class LoginComponent implements OnInit {
           this.session.email = res['email'];
           this.session.role = res['role_prefix'];
           this.storageService.setCurrentSession(this.session);
+          this.blockUI.stop();
           this.router.navigateByUrl('select-module');
         }else{
+          this.blockUI.stop();
           this.snackBar.openFromComponent(SnackComponent, 
             {data: 'Credenciales inválidas' + this.globalclass.snackMsjError, duration: this.globalclass.snackDuration, horizontalPosition: 'center', panelClass: [this.globalclass.snackError]});
         }
       },(err:any) => {
+        this.blockUI.stop();
         this.snackBar.openFromComponent(SnackComponent, 
           {data: err + this.globalclass.snackMsjError, duration: this.globalclass.snackDuration, horizontalPosition: 'center', panelClass: [this.globalclass.snackError]});
       })
     }else{
+      this.blockUI.stop();
       this.snackBar.openFromComponent(SnackComponent, 
         {data: 'Debe llenar todos los campos' + this.globalclass.snackMsjWarning, duration: this.globalclass.snackDuration, horizontalPosition: 'center', panelClass: [this.globalclass.snackWarning]});
     }

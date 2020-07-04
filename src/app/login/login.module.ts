@@ -10,7 +10,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button'; 
 import { HttpClientModule } from '@angular/common/http'; 
 import { CoreModule } from '../core/core.module';
-
+import { BlockUIModule } from 'ng-block-ui';
 
 
 @NgModule({
@@ -23,7 +23,8 @@ import { CoreModule } from '../core/core.module';
     MatInputModule,
     MatButtonModule,
     HttpClientModule,
-    CoreModule
+    CoreModule,
+    BlockUIModule.forRoot()
   ]
 })
 export class LoginModule { }
