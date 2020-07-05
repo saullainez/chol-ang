@@ -1,7 +1,7 @@
 <div class="grid-container">
   <h1 class="mat-h1">Dashboard</h1>
-  <!-- <app-datatable [columns] = "Columns" [data]="data" (deleteEvent)="delete($event)"
-  (AddEvent)="new($event)" url="element"></app-datatable> -->
+  <app-datatable [columns] = "Columns" [data]="data" (deleteEvent)="delete($event)"
+  (AddEvent)="new($event)" url="element"></app-datatable> 
   <br><br>
   <app-autocomplete [class]="'example-full-width col-lg-12'" [Placeholder]="'Seleccione uno'"
     [options]="optionsautocomplete"
@@ -14,5 +14,5 @@
     (keydown.enter)="ValueKey($event,'valueselect')">
   </app-select>
   <br>
-  <app-datatable-configurable [columns] = "ColumnsConfigurable" [data]="data"></app-datatable-configurable>
+  <!--<app-datatable-configurable [columns] = "ColumnsConfigurable" [data]="data"></app-datatable-configurable> -->
 </div>

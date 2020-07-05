@@ -1,4 +1,5 @@
-import { Component, OnInit, Input, ViewChild, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, Output, EventEmitter, Inject } from '@angular/core';
+import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-dialog-confirm',
@@ -11,11 +12,16 @@ export class DialogConfirmComponent implements OnInit {
   @Input() Title: string; //recibe el titulo de la tabla
   @Input() Text: string; //recibe el texto del cuerpo del mensaje
 
-  constructor() { }
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) {
+    this.Title = data.title;
+    this.Text = data.text;
+   }
 
   ngOnInit(): void {
-    this.Title = 'CONFIRMACIÓN';
-    this.Text = 'Desea eliminar este registro?';
+    
+    
   }
 
 }
