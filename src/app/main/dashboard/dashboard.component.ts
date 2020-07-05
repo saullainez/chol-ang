@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
-import { map } from 'rxjs/operators';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
+import {MatDialog} from '@angular/material/dialog';
+import { DialogConfirmComponent } from '../../components/dialog-confirm/dialog-confirm.component';
+import { FormGroup, FormControl, FormArray } from '@angular/forms';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,28 +10,13 @@ import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent {
+  mainForm: FormGroup;
+  @ViewChild('child1') childdialog:DialogConfirmComponent;
 
-
-  /** Based on the screen size, switch from standard to one column per row */
-  cards = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
-    map(({ matches }) => {
-      if (matches) {
-        return [
-          { title: 'Card 1', cols: 1, rows: 1 },
-          { title: 'Card 2', cols: 1, rows: 1 },
-          { title: 'Card 3', cols: 1, rows: 1 },
-          { title: 'Card 4', cols: 1, rows: 1 }
-        ];
-      }
-
-      return [
-        { title: 'Card 1', cols: 2, rows: 1 },
-        { title: 'Card 2', cols: 1, rows: 1 },
-        { title: 'Card 3', cols: 1, rows: 2 },
-        { title: 'Card 4', cols: 1, rows: 1 }
-      ];
-    })
-  );
+  valueautocomplete:any;
+  valueselect:any;
+  optionsautocomplete: any;
+  optionsselect:any;
 
   Columns = [
     { def: 'name', header: 'Nombre', cell: (row: PeriodicElement) => `${row.name}` },
@@ -37,6 +24,14 @@ export class DashboardComponent {
     { def: 'weight', header: 'Tamaño', cell: (row: PeriodicElement) => `${row.weight}` },
     { def: 'symbol', header: 'Simbolo', cell: (row: PeriodicElement) => `${row.symbol}` },
     { def: 'rol', header: 'Rol', cell: (row: PeriodicElement) => `${row.rol}` }
+  ];
+
+  ColumnsConfigurable = [
+    { type:'input', def: 'name', header: 'Nombre', cell: (row: PeriodicElement) => `${row.name}` },
+    { type:'input', def: 'position', header: 'Posición', cell: (row: PeriodicElement) => `${row.position}` },
+    { type:'input', def: 'weight', header: 'Tamaño', cell: (row: PeriodicElement) => `${row.weight}` },
+    { type:'input', def: 'symbol', header: 'Simbolo', cell: (row: PeriodicElement) => `${row.symbol}` },
+    { type:'input', def: 'rol', header: 'Rol', cell: (row: PeriodicElement) => `${row.rol}` }
   ];
 
   data: PeriodicElement[] = [
@@ -62,8 +57,41 @@ export class DashboardComponent {
     {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
   ];
 
-  constructor(private breakpointObserver: BreakpointObserver) {
+  constructor(private breakpointObserver: BreakpointObserver, public dialog: MatDialog) {
     //console.log("G");
+  }
+
+  ngOnInit(): void {
+    this.optionsautocomplete = ['One', 'Two', 'Three', 'Four', 'Five'];
+    this.optionsselect = [
+      {value: '1', description: 'Steak'},
+      {value: '2', description: 'Pizza'},
+      {value: '3', description: 'Tacos'}
+    ];
+  }
+
+  //FUNCIONES NECESARIAS PARA DATATABLE
+  delete(id) {
+    const dialogRef = this.dialog.open(DialogConfirmComponent);
+    dialogRef.afterClosed().subscribe(result => {
+       console.log(id);
+     });
+  }
+
+  new(event) {
+    console.log(event);
+    console.log("NUEVO ELEMENTO");
+  }
+
+  //FUNCIONES NECESARIAS PARA AUTOCOMPLETE
+  public ValueSelectAutocomplete(event: any, valtemp: string) {
+    this[valtemp] = event;
+    console.log(this[valtemp]);
+  }
+
+  public ValueKey(event: any, valtemp: string) {
+    this[valtemp] = event.target.value;
+    console.log(this[valtemp]);
   }
 }
 

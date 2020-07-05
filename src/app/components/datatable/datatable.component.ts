@@ -21,6 +21,8 @@ export class DatatableComponent implements OnInit {
   @Input() showEdit = true; //true o false para ver la opcion de editar
   @Input() showDelete = true; //true o false para ver la opcion de eliminar
   @Input() showDetails = true; //true o false para ver la opcion ver detalles
+  @Input() multipleKey = false; //true o false para ver la opcion ver detalles
+  @Input() url: string; //ruta de edición
 
   //Parametros de salida
   @Output() deleteEvent = new EventEmitter<any>();
@@ -53,7 +55,7 @@ export class DatatableComponent implements OnInit {
   this.dataSource.filter = filterValue.trim().toLowerCase();
 }
 
-/*
+
 //funcion para eliminar una fila del datatable
 public delete = (element: any) => {
   const keys = Object.keys(element);
@@ -63,16 +65,17 @@ public delete = (element: any) => {
     this.deleteEvent.emit(element);
   }
 }
-*/
 
-/*
+addRecord() {
+  this.AddEvent.emit();
+}
+
 //redirecciona el id de la fila a otra url
 public EditUrl = (element: any) => {
   const keys = Object.keys(element);
   this.url = this.url + '/' + element[keys[0]];
   this.router.navigate([this.url]);
 }
-*/
 
 /*
 public Edit = (element: any) => {
