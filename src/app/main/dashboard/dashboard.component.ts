@@ -11,7 +11,6 @@ import { FormGroup, FormControl, FormArray } from '@angular/forms';
 })
 export class DashboardComponent {
   mainForm: FormGroup;
-  @ViewChild('child1') childdialog:DialogConfirmComponent;
 
   valueautocomplete:any;
   valueselect:any;
@@ -72,7 +71,7 @@ export class DashboardComponent {
 
   //FUNCIONES NECESARIAS PARA DATATABLE
   delete(id) {
-    const dialogRef = this.dialog.open(DialogConfirmComponent);
+    const dialogRef = this.dialog.open(DialogConfirmComponent, {data:{title:'Prueba',text:'Texto de prueba'}});
     dialogRef.afterClosed().subscribe(result => {
        console.log(id);
      });
