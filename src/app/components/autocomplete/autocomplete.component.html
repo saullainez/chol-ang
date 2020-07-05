@@ -1,0 +1,17 @@
+
+<mat-form-field [class]="class">
+  <input type="text"
+    placeholder="{{ Placeholder }}"
+    aria-label="Number"
+    matInput
+    [formControl]="myControl"
+    [matAutocomplete]="auto"
+    [(ngModel)]="Model"
+    (change)="data(Model)">
+  <mat-autocomplete #auto="matAutocomplete">
+    <mat-option (keydown.enter)="key(Model)" (click)="data(Model)"
+    *ngFor="let option of filteredOptions | async" [value]="option">
+      {{option}}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>
