@@ -11,15 +11,17 @@ import { AutocompleteComponent } from './autocomplete/autocomplete.component';
 import { SelectComponent } from './select/select.component';
 import { EmergentInputComponent } from './emergent-input/emergent-input.component';
 import { SatPopoverModule } from '@ncstate/sat-popover';
+import { PageBreadcrumbComponent } from './page-breadcrumb/page-breadcrumb.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 //import { DatepickerComponent } from './datepicker/datepicker.component';
 
 
 
 @NgModule({
-  declarations: [DatatableComponent, DialogConfirmComponent, DatatableConfigurableComponent, AutocompleteComponent, SelectComponent, EmergentInputComponent],
-  imports: [CommonModule, MaterialModule, FormsModule, ReactiveFormsModule, SatPopoverModule ],
+  declarations: [DatatableComponent, DialogConfirmComponent, DatatableConfigurableComponent, AutocompleteComponent, SelectComponent, EmergentInputComponent, PageBreadcrumbComponent],
+  imports: [CommonModule, MaterialModule, FormsModule, ReactiveFormsModule, SatPopoverModule, FlexLayoutModule ],
   exports:[DatatableComponent, DialogConfirmComponent, DatatableConfigurableComponent,
-    AutocompleteComponent, SelectComponent]
+    AutocompleteComponent, SelectComponent, PageBreadcrumbComponent]
 })
 export class ComponentsModule { }
