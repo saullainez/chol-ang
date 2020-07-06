@@ -20,10 +20,16 @@ export class NavComponent {
       shareReplay()
     );
 
+    app_name : string;
+    module : string;
+
   constructor(
     private breakpointObserver: BreakpointObserver, 
     private authService: AuthService,
-    private storageService: StorageService) {}
+    private storageService: StorageService) {
+      this.app_name = storageService.getSysParam().app_name;
+      this.module = storageService.getCurrentModuleName();
+    }
 
   logout(){
     this.blockUI.start("Cerrando sesión");

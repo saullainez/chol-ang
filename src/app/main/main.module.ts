@@ -21,6 +21,7 @@ import { FooterComponent } from './footer/footer.component';
     MaterialModule,
     ComponentsModule,
     BlockUIModule.forRoot()
-  ]
+  ],
+  exports: [MainComponent, NavComponent, DashboardComponent, FooterComponent]
 })
 export class MainModule { }
