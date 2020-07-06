@@ -7,6 +7,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { SnackComponent } from '../core/snack/snack.component';
 import { Globalclass } from '../core/models/globalclass';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
+import { SysParam } from '../core/models/sys-param';
 
 @Component({
   selector: 'app-login',
@@ -24,7 +25,8 @@ export class LoginComponent implements OnInit {
     private storageService: StorageService,
     private router: Router,
     private snackBar: MatSnackBar,
-    private globalclass: Globalclass
+    private globalclass: Globalclass,
+    private sysParam : SysParam
   ) {
    }
 
@@ -40,7 +42,11 @@ export class LoginComponent implements OnInit {
           this.session.expires_at = res['expires_at'];
           this.session.email = res['email'];
           this.session.role = res['role_prefix'];
+          this.sysParam.app_name = res['app_name'];
+          this.sysParam.version = res['version'];
+          this.sysParam.sys_date = res['sys_date'];
           this.storageService.setCurrentSession(this.session);
+          this.storageService.setSysParam(this.sysParam);
           this.blockUI.stop();
           this.router.navigateByUrl('select-module');
         }else{

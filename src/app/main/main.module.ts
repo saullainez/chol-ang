@@ -9,10 +9,11 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ComponentsModule } from '../components/components.module';
 import { BlockUIModule } from 'ng-block-ui';
+import { FooterComponent } from './footer/footer.component';
 
 
 @NgModule({
-  declarations: [MainComponent, NavComponent, DashboardComponent],
+  declarations: [MainComponent, NavComponent, DashboardComponent, FooterComponent],
   imports: [
     CommonModule,
     MainRoutingModule,
