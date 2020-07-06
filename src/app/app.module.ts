@@ -16,6 +16,7 @@ import { ComponentsModule } from './components/components.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { Rolemodule } from './core/models/rolemodule';
 import { RoleModuleGuard } from './core/guard/role-module.guard';
+import { SysParam } from './core/models/sys-param';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,7 @@ import { RoleModuleGuard } from './core/guard/role-module.guard';
     ComponentsModule,
     FlexLayoutModule
   ],
-  providers: [GlobalService, Globalclass, AuthGuardService, GuestGuardService, Session, Rolemodule, RoleModuleGuard],
+  providers: [GlobalService, Globalclass, AuthGuardService, GuestGuardService, Session, Rolemodule, RoleModuleGuard, SysParam],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
