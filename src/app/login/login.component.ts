@@ -57,7 +57,7 @@ export class LoginComponent implements OnInit {
       },(err:any) => {
         this.blockUI.stop();
         this.snackBar.openFromComponent(SnackComponent, 
-          {data: err + this.globalclass.snackMsjError, duration: this.globalclass.snackDuration, horizontalPosition: 'center', panelClass: [this.globalclass.snackError]});
+          {data: 'Error : ' + err.status + ' ' + err.statusText + this.globalclass.snackMsjError, duration: this.globalclass.snackDuration, horizontalPosition: 'center', panelClass: [this.globalclass.snackError]});
       })
     }else{
       this.blockUI.stop();
