@@ -6,6 +6,7 @@ import { SegComponent } from './seg.component';
 import { MainModule } from '../main/main.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ComponentsModule } from '../components/components.module';
+import { MaterialModule } from '../material/material.module';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { ComponentsModule } from '../components/components.module';
     CommonModule,
     SegRoutingModule,
     MainModule,
-    ComponentsModule
+    ComponentsModule,
+    MaterialModule
   ],
   entryComponents: [],
   bootstrap: [SegComponent]

@@ -1,4 +1,20 @@
 <app-page-breadcrumb [title]="'Dashboard'" ></app-page-breadcrumb>
-<div class="grid-container">
+<div class="grid-container" 
+    fxLayout="row wrap" 
+    fxLayout.lt-sm="column" 
+    fxLayoutGap="32px" 
+    fxLayoutAlign="flex-start">
+    <div fxFlex="0 1 calc(33.3% - 32px)" fxFlex.lt-md="0 1 calc(50% - 32px)" fxFlex.lt-sm="100%">
+        <app-card-icon [title]="'Usuarios'" [count]="dashboard.usersCount" [icon]="'fas fa-users'" [iconBackground]="'rgba(6, 6, 221, 0.67)'"></app-card-icon>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 32px)" fxFlex.lt-md="0 1 calc(50% - 32px)" fxFlex.lt-sm="100%">
+        <app-card-icon [title]="'Roles'" [count]="dashboard.rolesCount" [icon]="'fas fa-user-tag'" [iconBackground]="'rgb(50, 135, 211)'"></app-card-icon>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 32px)" fxFlex.lt-md="0 1 calc(50% - 32px)" fxFlex.lt-sm="100%">
+        <app-card-icon [title]="'Módulos'" [count]="dashboard.modulesCount" [icon]="'fas fa-boxes'" [iconBackground]="'rgba(116, 0, 255, 0.58)'"></app-card-icon>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 32px)" fxFlex.lt-md="0 1 calc(50% - 32px)" fxFlex.lt-sm="100%">
+        <app-card-icon [title]="'Permisos a Módulos'" [count]="dashboard.rolModulesCount" [icon]="'fas fa-key'" [iconBackground]="'rgba(228, 95, 15, 0.76)'"></app-card-icon>
+    </div>
 </div>
 

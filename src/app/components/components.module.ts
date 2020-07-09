@@ -13,15 +13,16 @@ import { EmergentInputComponent } from './emergent-input/emergent-input.componen
 import { SatPopoverModule } from '@ncstate/sat-popover';
 import { PageBreadcrumbComponent } from './page-breadcrumb/page-breadcrumb.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { CardIconComponent } from './card-icon/card-icon.component';
 
 //import { DatepickerComponent } from './datepicker/datepicker.component';
 
 
 
 @NgModule({
-  declarations: [DatatableComponent, DialogConfirmComponent, DatatableConfigurableComponent, AutocompleteComponent, SelectComponent, EmergentInputComponent, PageBreadcrumbComponent],
+  declarations: [DatatableComponent, DialogConfirmComponent, DatatableConfigurableComponent, AutocompleteComponent, SelectComponent, EmergentInputComponent, PageBreadcrumbComponent, CardIconComponent],
   imports: [CommonModule, MaterialModule, FormsModule, ReactiveFormsModule, SatPopoverModule, FlexLayoutModule ],
   exports:[DatatableComponent, DialogConfirmComponent, DatatableConfigurableComponent,
-    AutocompleteComponent, SelectComponent, PageBreadcrumbComponent]
+    AutocompleteComponent, SelectComponent, PageBreadcrumbComponent, CardIconComponent]
 })
 export class ComponentsModule { }
