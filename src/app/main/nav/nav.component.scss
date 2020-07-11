@@ -36,3 +36,24 @@ a{
   text-decoration: none;
   color: white;
 }
+
+.menu-button {
+  transition: 300ms ease-in-out;
+  transform: rotate(0deg);
+}
+.menu-button.rotated {
+  transform: rotate(180deg);
+}
+.submenu {
+  overflow-y: hidden;
+  transition: 300ms ease-in-out;
+  height: 0;
+}
+.submenu.expanded {
+  height: 100%;
+  padding-left: 16px;
+}
+
+.main-menu-title{
+  margin-right: 5%;
+}
