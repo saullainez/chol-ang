@@ -26,7 +26,7 @@ export class DatatableComponent implements OnInit {
 
   //Parametros de salida
   @Output() deleteEvent = new EventEmitter<any>();
-  @Output() AddEvent = new EventEmitter<any>();
+  @Output() CreateEvent = new EventEmitter<any>();
   @Output() detailsEvent = new EventEmitter<any>();
   @Output() Previous = new EventEmitter<any>();
 
@@ -67,7 +67,7 @@ public delete = (element: any) => {
 }
 
 addRecord() {
-  this.AddEvent.emit();
+  this.CreateEvent.emit();
 }
 
 //redirecciona el id de la fila a otra url

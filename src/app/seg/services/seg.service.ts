@@ -9,4 +9,9 @@ export class SegService extends GlobalService {
   getDashInfo(){
     return this.httpClient.get(this.globalclass.uri_api + 'seg/dash_info', this.options);
   }
+
+  //SALG obtiene la información del usuario
+  getUserInfo(){
+    return this.httpClient.get(this.globalclass.uri_api + 'seg/users', this.options);
+  }
 }
