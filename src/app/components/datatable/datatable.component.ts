@@ -77,6 +77,10 @@ public EditUrl = (element: any) => {
   this.router.navigate([this.url]);
 }
 
+refresh(data:any) {
+  this.dataSource = new MatTableDataSource(data);
+}
+
 /*
 public Edit = (element: any) => {
   const keys = Object.keys(element);

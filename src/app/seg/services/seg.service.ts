@@ -14,4 +14,9 @@ export class SegService extends GlobalService {
   getUserInfo(){
     return this.httpClient.get(this.globalclass.uri_api + 'seg/users', this.options);
   }
+
+  //SALG Desactivar usuario
+  deactivateUser(id:number){
+    return this.httpClient.delete(this.globalclass.uri_api + 'seg/users/' + id, this.options)
+  }
 }

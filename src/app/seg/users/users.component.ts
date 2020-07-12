@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { User } from '../interfaces/user';
 import { SegService } from '../services/seg.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -7,6 +7,7 @@ import { Globalclass } from '../../core/models/globalclass';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { DialogConfirmComponent } from '../../components/dialog-confirm/dialog-confirm.component';
 import {MatDialog} from '@angular/material/dialog';
+import { DatatableComponent } from '../../components/datatable/datatable.component';
 
 @Component({
   selector: 'app-users',
@@ -15,6 +16,7 @@ import {MatDialog} from '@angular/material/dialog';
 })
 export class UsersComponent implements OnInit {
   @BlockUI() blockUI: NgBlockUI;
+  @ViewChild(DatatableComponent) datatable: DatatableComponent;
   users : User[];
   Columns = [
     { def: 'id', header: 'Id', cell: (row: User) => `${row.id}` },
@@ -44,9 +46,24 @@ export class UsersComponent implements OnInit {
   }
 
   delete(id) {
-    const dialogRef = this.dialog.open(DialogConfirmComponent, {data:{title:'Eliminar usuario',text:'¿Está seguro de eliminar este usuario?'}});
+    const dialogRef = this.dialog.open(DialogConfirmComponent, {data:{title:'Eliminar usuario', text:'¿Está seguro de eliminar este usuario?'}});
     dialogRef.afterClosed().subscribe(result => {
-       console.log(id);
+      if (result == true){
+        this.blockUI.start("Eliminando usuario");
+        this.segService.deactivateUser(id).subscribe((data:any) => {
+         if(data["success"] = true){
+           this.datatable.refresh(data["users"]);
+           this.users = data["users"];
+           this.blockUI.stop();
+           this.snackBar.openFromComponent(SnackComponent, {data: 'Usuario eliminado correctamente' + this.globalclass.snackMsjSuccess, duration: this.globalclass.snackDuration, horizontalPosition: 'center', panelClass: [this.globalclass.snackSuccess]});
+         }
+        }, (err:any) => {
+         this.blockUI.stop();
+         this.snackBar.openFromComponent(SnackComponent, 
+           {data: 'Error : ' + err.status + ' ' + err.statusText + this.globalclass.snackMsjError, duration: this.globalclass.snackDuration, horizontalPosition: 'center', panelClass: [this.globalclass.snackError]});
+        })
+      }
+
      });
   }
 
