@@ -1,0 +1,5 @@
+<app-page-breadcrumb [title]="'Usuarios'" ></app-page-breadcrumb>
+<div class="grid-container" *ngIf="users">
+    <app-datatable [columns] = "Columns" [data]="users" (deleteEvent)="delete($event)" 
+    (CreateEvent)="new($event)" url="seg/users"></app-datatable> 
+</div>

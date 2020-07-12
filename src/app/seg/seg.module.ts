@@ -7,10 +7,11 @@ import { MainModule } from '../main/main.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ComponentsModule } from '../components/components.module';
 import { MaterialModule } from '../material/material.module';
+import { UsersComponent } from './users/users.component';
 
 
 @NgModule({
-  declarations: [SegComponent, DashboardComponent],
+  declarations: [SegComponent, DashboardComponent, UsersComponent],
   imports: [
     CommonModule,
     SegRoutingModule,
