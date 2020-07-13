@@ -14,11 +14,11 @@ export class AutocompleteComponent implements OnInit {
   //PARAMETROS DE ENTRADA
   @Input() options: any; //Recibe las opciones a mostrar dentro del autocomplete
   @Input() class: any; //Recibe el class dinamico para este componente
-  @Input() disabled: any; //Recibe true o false si este componente es desactivado
+  @Input() Disabled: any; //Recibe true o false si este componente es desactivado
   @Input() Placeholder: any; //Recibe el placeholder del componente
 
   //PARAMETROS DE RETORNO AL COMPONENTE PADRE
-  @Output() getData = new EventEmitter<any>();
+  @Output() getValue = new EventEmitter<any>();
   @Output() keypress = new EventEmitter<any>();
 
   Model:any;
@@ -34,7 +34,7 @@ export class AutocompleteComponent implements OnInit {
         map(value => this.filter(value))
     );
 
-    if(this.disabled)
+    if(this.Disabled)
     {
       this.myControl.disable();
     }
@@ -48,7 +48,7 @@ export class AutocompleteComponent implements OnInit {
 
   public data = (element: any) => {
     const keys = Object.keys(element);
-    this.getData.emit(element);
+    this.getValue.emit(element);
   }
 
   public key = (element: any) => {

@@ -32,7 +32,9 @@
               "node_modules/@fortawesome/fontawesome-free/css/all.css",
               "src/styles.scss"
             ],
-            "scripts": ["node_modules/@fortawesome/fontawesome-free/js/all.js"]
+            "scripts": [
+              "node_modules/@fortawesome/fontawesome-free/js/all.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -128,5 +130,8 @@
       }
     }
   },
-  "defaultProject": "chol-ang"
+  "defaultProject": "chol-ang",
+  "cli": {
+    "analytics": "f3472b5f-d130-4a30-85b1-7cb17881e3ae"
+  }
 }
