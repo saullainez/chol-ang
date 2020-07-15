@@ -4,12 +4,24 @@
         [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
         [mode]="(isHandset$ | async) ? 'over' : 'side'"
         [opened]="(isHandset$ | async) === false">
-      <mat-toolbar>Aplicación</mat-toolbar>
+      <mat-toolbar><a [routerLink]="['/select-module']">{{ app_name }} - {{ module }}</a> </mat-toolbar>
       <mat-nav-list>
-        <a mat-list-item href="#">Link 1</a>
-        <a mat-list-item href="#">Link 2</a>
-        <a mat-list-item href="#">Link 3</a>
+        <div *ngFor="let menu of menus">
+          <mat-list-item (click)="expandSubMenu(menu.description)">
+            <i style="margin-right: 4px;" [ngClass]='menu.icon'></i>
+            <span class="main-menu-title">{{menu.description}}</span>
+            <button mat-button mat-icon-button (click)="showSubmenu = !showSubmenu">
+              <mat-icon *ngIf="menu.count>0" class="menu-button" [class.rotated]="showSubmenu === menu.description">expand_more</mat-icon>
+            </button>
+          </mat-list-item>
+          <div class="submenu" [class.expanded]="showSubmenu === menu.description">
+            <mat-list-item *ngFor="let sub_menu of menu.sub_menu" [routerLink]="[sub_menu.uri]">
+              <li [ngClass]='sub_menu.sub_icon' style="font-size: 14px; padding-right: 5px;"></li><span style="font-size: 16px;">{{sub_menu.sub_desc}}</span></mat-list-item>
+          </div>
+        </div>
+
       </mat-nav-list>
+
     </mat-sidenav>
     <mat-sidenav-content>
       <mat-toolbar color="primary">
@@ -34,7 +46,9 @@
         <span class="spacer"></span>
         <button mat-raised-button color="basic" (click)="logout()">Salir</button>
       </mat-toolbar>
-      <app-dashboard></app-dashboard>
+        <div style="height: 88vh; background: #d5dcfd82 !important;">
+          <ng-content></ng-content>
+        </div>
     </mat-sidenav-content>
   </mat-sidenav-container>
 </block-ui>

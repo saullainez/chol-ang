@@ -3,6 +3,7 @@ import { Session } from '../models/session';
 import { Router } from '@angular/router';
 import { ModuleSession } from '../models/module-session';
 import { Rolemodule } from '../models/rolemodule';
+import { SysParam } from '../models/sys-param';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,7 @@ export class StorageService {
   private currentSession: Session = null;
   private moduleSession: ModuleSession = null;
   private roleModule: Rolemodule = null;
+  private sysParam: SysParam = null;
 
   constructor(private router: Router) { }
 
@@ -65,6 +67,11 @@ export class StorageService {
     return moduleSession && moduleSession.name ? moduleSession.name : null;
   }
 
+  getCurrentModuleDesc(): string {
+    const moduleSession = this.getModuleSession();
+    return moduleSession && moduleSession.description ? moduleSession.description : null;
+  }
+
   setRoleModule(rolemodule: Rolemodule){
     this.roleModule = rolemodule;
     localStorage.setItem('roleModule', JSON.stringify(rolemodule));
@@ -79,7 +86,16 @@ export class StorageService {
     const roleModule = this.getRoleModule();
     const find = roleModule.modules.find(module => module.uri == moduleName )
     return find ? true : false
+  }
 
+  setSysParam(sys_param: SysParam){
+    this.sysParam = sys_param;
+    localStorage.setItem('sysParam', JSON.stringify(sys_param));
+  }
+
+  getSysParam(): SysParam{
+    const sysParam = localStorage.getItem('sysParam');
+    return sysParam ? <SysParam>JSON.parse(sysParam) : null;
   }
 
   logout(): void {

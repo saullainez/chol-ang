@@ -9,6 +9,7 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ComponentsModule } from '../components/components.module';
 import { BlockUIModule } from 'ng-block-ui';
+import { FooterComponent } from './footer/footer.component';
 
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatNativeDateModule} from '@angular/material/core';
@@ -16,7 +17,7 @@ import {MatNativeDateModule} from '@angular/material/core';
 
 
 @NgModule({
-  declarations: [MainComponent, NavComponent, DashboardComponent],
+  declarations: [MainComponent, NavComponent, DashboardComponent, FooterComponent],
   imports: [
     CommonModule,
     MainRoutingModule,
@@ -27,6 +28,7 @@ import {MatNativeDateModule} from '@angular/material/core';
     MatNativeDateModule,
     ReactiveFormsModule,
     BlockUIModule.forRoot()
-  ]
+  ],
+  exports: [MainComponent, NavComponent, DashboardComponent, FooterComponent]
 })
 export class MainModule { }

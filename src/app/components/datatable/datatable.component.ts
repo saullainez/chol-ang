@@ -24,9 +24,11 @@ export class DatatableComponent implements OnInit {
   @Output() multipleKey = false; //disparador de eventos para eliminar
 
   //Parametros de salida
+
   @Output() DeleteEvent = new EventEmitter<any>();
   @Output() CreateEvent = new EventEmitter<any>();
   @Output() EditEvent = new EventEmitter<any>();
+
   @Output() Previous = new EventEmitter<any>();
 
   dataSource:any;//datos del datatable
@@ -64,10 +66,12 @@ export class DatatableComponent implements OnInit {
     }
   }
 
+
   //funcion que se dispara al crear un nuevo elemento
   create() {
     this.CreateEvent.emit();
   }
+
 
   //redirecciona el id de la fila a otra url
   public EditUrl = (element: any) => {
@@ -76,11 +80,17 @@ export class DatatableComponent implements OnInit {
     this.router.navigate([this.url]);
   }
 
+
   //funcion que retorna el elemento a editar del datatable
   public Edit = (element: any) => {
     const keys = Object.keys(element);
     this.EditEvent.emit(element);
   }
+
+refresh(data:any) {
+  this.dataSource = new MatTableDataSource(data);
+}
+
 
 }
 
