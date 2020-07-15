@@ -14,7 +14,6 @@ export class DatatableConfigurableComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  @Input() Title: string; //recibe el titulo de la tabla
   @Input() columns: any; //recibe las columnas del datatable
   @Input() data: any; //recibe los datos del datatable
 
@@ -30,8 +29,6 @@ export class DatatableConfigurableComponent implements OnInit {
   ngOnInit(): void {
     this.displayedColumns = this.columns.map(x=>x.def);
     this.dataSource = new MatTableDataSource(this.data);
-    console.log(this.displayedColumns);
-    console.log(this.dataSource.data);
   }
 
   ngAfterViewInit (): void {

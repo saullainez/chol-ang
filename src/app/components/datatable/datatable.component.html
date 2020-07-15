@@ -4,7 +4,14 @@
       <mat-label>Filtro de busqueda</mat-label>
       <input matInput (keyup)="applyFilter($event)" #input>
     </mat-form-field>
-
+    <div class="row">
+      <div class="col-lg-11"></div>
+      <div class="col-lg-1">
+        <button *ngIf="btnCreate" matTooltip="Agregar/Crear" mat-mini-fab color="primary" (click)="create()">
+          <i class="fas fa-plus"></i>
+        </button>
+      </div>
+    </div>
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z12" style="width: 100%;">
 
       <!-- Column -->
@@ -13,7 +20,7 @@
         <td mat-cell *matCellDef="let element"> {{ column.cell(element) }} </td>
       </ng-container>
 
-      <ng-container matColumnDef="edit" *ngIf="showEdit">
+      <ng-container matColumnDef="edit" *ngIf="btnEdit">
         <th mat-header-cell *matHeaderCellDef width="5%"> Ver/Editar </th>
         <td mat-cell *matCellDef="let element">
           <button mat-icon-button color="secundary" matTooltip="Ver/Editar" (click)="EditUrl(element)">
@@ -22,7 +29,7 @@
         </td>
       </ng-container>
 
-      <ng-container matColumnDef="delete" *ngIf="showDelete">
+      <ng-container matColumnDef="delete" *ngIf="btnDelete">
         <th mat-header-cell *matHeaderCellDef width="5%"> Eliminar </th>
         <td mat-cell *matCellDef="let element">
           <button mat-icon-button color="secundary" matTooltip="Eliminar" (click)="delete(element)">

@@ -2,20 +2,26 @@ import { Component, ViewChild, OnInit } from '@angular/core';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import {MatDialog} from '@angular/material/dialog';
 import { DialogConfirmComponent } from '../../components/dialog-confirm/dialog-confirm.component';
-import { FormGroup, FormControl, FormArray } from '@angular/forms';
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent {
-  mainForm: FormGroup;
 
+  @BlockUI() blockUI: NgBlockUI;
   valueautocomplete:any;
   valueselect:any;
+  value2: any;
   optionsautocomplete: any;
   optionsselect:any;
+  valuedate:any;
+  valuecheck:any;
+  valueradio:any;
+  valueslide:any;
+  valuecolor:any;
 
   Columns = [
     { def: 'name', header: 'Nombre', cell: (row: PeriodicElement) => `${row.name}` },
@@ -43,29 +49,19 @@ export class DashboardComponent {
     {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N', rol:'Admin'},
     {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O', rol:'Maestro'},
     {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F', rol:'Maistro'},
-    {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-    {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-    {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-    {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-    {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-    {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-    {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-    {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-    {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-    {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-    {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
+    {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'}
   ];
 
   constructor(private breakpointObserver: BreakpointObserver, public dialog: MatDialog) {
-    //console.log("G");
   }
 
   ngOnInit(): void {
+    //this._adapter.setLocale('es');
     this.optionsautocomplete = ['One', 'Two', 'Three', 'Four', 'Five'];
     this.optionsselect = [
-      {value: '1', description: 'Steak'},
-      {value: '2', description: 'Pizza'},
-      {value: '3', description: 'Tacos'}
+      {value: 1, description: 'UNO'},
+      {value: 2, description: 'DOS'},
+      {value: 3, description: 'TRES'}
     ];
   }
 
@@ -73,24 +69,25 @@ export class DashboardComponent {
   delete(id) {
     const dialogRef = this.dialog.open(DialogConfirmComponent, {data:{title:'Prueba',text:'Texto de prueba'}});
     dialogRef.afterClosed().subscribe(result => {
-       console.log(id);
-     });
+      if(result)
+      {
+        console.log(id);
+      }
+    });
   }
 
-  new(event) {
-    console.log(event);
+  new() {
     console.log("NUEVO ELEMENTO");
   }
 
   //FUNCIONES NECESARIAS PARA AUTOCOMPLETE
-  public ValueSelectAutocomplete(event: any, valtemp: string) {
-    this[valtemp] = event;
-    console.log(this[valtemp]);
+  public GetValue(event: any, variable: string) {
+    this[variable] = event;
+    console.log(this[variable]);
   }
 
-  public ValueKey(event: any, valtemp: string) {
-    this[valtemp] = event.target.value;
-    console.log(this[valtemp]);
+  public ValueKey(event: any, variable: string) {
+    this[variable] = event.target.value;
   }
 }
 

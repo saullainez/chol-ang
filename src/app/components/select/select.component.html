@@ -1,8 +1,8 @@
-<mat-form-field appearance="fill">
+<mat-form-field appearance="fill" [class]="Class">
   <mat-label>{{ Placeholder }}</mat-label>
-  <mat-select [(ngModel)]="Model" [disabled]="disabled">
-    <mat-option *ngFor="let option of options" [value]="option.value"
-    (keydown.enter)="key(Model)" (click)="data(Model)">
+  <mat-select [(value)]="Value" [disabled]="Disabled">
+    <mat-option *ngFor="let option of Options" [value]="option.value"
+    (keydown.enter)="key(Value)" (click)="data(Value)">
       {{option.description}}
     </mat-option>
   </mat-select>

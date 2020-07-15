@@ -1,0 +1,17 @@
+<mat-card class="example-card">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>{{ Title }}</mat-card-title>
+    <mat-card-subtitle>{{ SubTitle }}</mat-card-subtitle>
+  </mat-card-header>
+  <img mat-card-image [src]="UrlImage" alt="Photo of a Shiba Inu">
+  <mat-card-content>
+    <p>
+      {{ Text }}
+    </p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button *ngIf="showEdit" (click)="Edit(id)"  mat-button>Ver/Editar</button>
+    <button *ngIf="showDelete" (click)="delete(id)" mat-button>Eliminar</button>
+  </mat-card-actions>
+</mat-card>
