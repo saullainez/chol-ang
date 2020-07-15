@@ -17,6 +17,15 @@
             </sat-popover>
           </td>
         </ng-container>
+        <ng-container matColumnDef="{{column.def}}" *ngIf="column.type === 'datepicker'">
+          <th mat-header-cell *matHeaderCellDef>{{ column.header }}</th>
+          <td [satPopoverAnchor]="p" mat-cell *matCellDef="let element" (click)="p.open()" class="pointer">
+            {{ column.cell(element) }}
+            <sat-popover #p xAlign="start" yAlign="start" hasBackdrop backdropClass="blue" (closed)="update(element, column.def, $event)">
+              <app-emergent-datepicker class="text-center" [value]="column.cell(element)"></app-emergent-datepicker>
+            </sat-popover>
+          </td>
+        </ng-container>
       </div>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

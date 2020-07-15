@@ -1,0 +1,20 @@
+<div *ngIf="Type === 'vertical'">
+  <label id="example-radio-group-label">{{ Title }}</label>
+  <mat-radio-group
+    aria-labelledby="example-radio-group-label"
+    class="example-radio-group"
+    [(ngModel)]="Value" (change)="data(Value)">
+    <br>
+    <mat-radio-button class="example-radio-button"
+      *ngFor="let option of Options" [value]="option.value">
+      {{option.description}}
+    </mat-radio-button>
+  </mat-radio-group>
+</div>
+<div *ngIf="Type === 'horizontal'">
+  <mat-radio-group [attr.aria-label]="Title" [(ngModel)]="Value" (change)="data(Value)">
+    <mat-radio-button *ngFor="let option of Options" [value]="option.value">
+      {{option.description}}
+    </mat-radio-button>
+  </mat-radio-group>
+</div>
