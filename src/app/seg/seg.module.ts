@@ -8,6 +8,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ComponentsModule } from '../components/components.module';
 import { MaterialModule } from '../material/material.module';
 import { UsersComponent } from './users/users.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 @NgModule({
@@ -17,7 +19,10 @@ import { UsersComponent } from './users/users.component';
     SegRoutingModule,
     MainModule,
     ComponentsModule,
-    MaterialModule
+    MaterialModule,
+    FormsModule,
+    FlexLayoutModule,
+    ReactiveFormsModule
   ],
   entryComponents: [],
   bootstrap: [SegComponent]
