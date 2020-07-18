@@ -76,7 +76,7 @@ export class DatatableComponent implements OnInit {
   //redirecciona el id de la fila a otra url
   public EditUrl = (element: any) => {
     const keys = Object.keys(element);
-    this.url = this.url + '/' + element;
+    this.url = this.url + '/' + element[keys[0]];
     this.router.navigate([this.url]);
   }
 

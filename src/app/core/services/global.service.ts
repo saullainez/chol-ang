@@ -23,4 +23,19 @@ export class GlobalService {
       headers: this.headers
     };
    }
+
+  //SALG obtiene la información de los usuarios
+  getUsersInfo(){
+    return this.httpClient.get(this.globalclass.uri_api + 'seg/users', this.options);
+  }
+
+  //SALG obtiene información de los roles
+  getRolesInfo(){
+    return this.httpClient.get(this.globalclass.uri_api + 'seg/roles', this.options);
+  }
+
+  //SALG obtiene información de los roles para el select
+  getRolesSelect(){
+    return this.httpClient.get(this.globalclass.uri_api + 'seg/roles-select', this.options);
+  }
 }

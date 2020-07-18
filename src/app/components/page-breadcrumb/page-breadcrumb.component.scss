@@ -5,9 +5,9 @@
 }
 
 .title-page-container {
-    flex: 1 1 60%;
+    flex: 1 1 40%;
+    max-width: 40%;
     box-sizing: border-box;
-    max-width: 60%;
 }
 
 
@@ -38,9 +38,9 @@
 }
 
 .breadcurm-item-container {
-    flex: 1 1 40%;
+    flex: 1 1 60%;
+    max-width: 60%;
     box-sizing: border-box;
-    max-width: 40%;
 }
 
 .page-breadcrumb .breadcrumb {
@@ -70,6 +70,10 @@ ul.list-style-none {
 .page-breadcrumb .breadcrumb .breadcrumb-item {
     font-size: 17px;
     color: rgb(63, 81, 181);
+}
+
+.item-text-md-lt {
+    font-size: 14px;
 }
 
 ul.list-style-none li {
