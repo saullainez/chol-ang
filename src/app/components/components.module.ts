@@ -36,9 +36,9 @@ import { CardIconComponent } from './card-icon/card-icon.component';
   declarations: [DatatableComponent, DialogConfirmComponent, DatatableConfigurableComponent, AutocompleteComponent, SelectComponent, EmergentInputComponent, PageBreadcrumbComponent, CardIconComponent, DatepickerComponent, DatepickerMyComponent, FileUploaderComponent, EmergentDatepickerComponent, CardsComponent, CheckboxComponent, RadioButtonComponent, SlideToggleComponent, ColorpickerComponent],
   imports: [CommonModule, MaterialModule, FormsModule, ReactiveFormsModule, SatPopoverModule, AngularFileUploaderModule, NgxMatColorPickerModule ],
   exports:[DatatableComponent, DialogConfirmComponent, DatatableConfigurableComponent,
-    AutocompleteComponent, SelectComponent, PageBreadcrumbComponent, CardIconComponen, DatepickerComponent, DatepickerMyComponent,
+    AutocompleteComponent, SelectComponent, PageBreadcrumbComponent, CardIconComponent, DatepickerComponent, DatepickerMyComponent,
     FileUploaderComponent, CardsComponent, CheckboxComponent, RadioButtonComponent,
-    SlideToggleComponent, ColorpickerComponent],
+    SlideToggleComponent, ColorpickerComponent, FlexLayoutModule],
   providers: [
     { provide: MAT_COLOR_FORMATS, useValue: NGX_MAT_COLOR_FORMATS }
   ]
