@@ -1,0 +1,7 @@
+<mat-form-field [ngClass]="Class">
+  <input matInput [ngxMatColorPicker]="picker" [formControl]="colorCtr"
+    [disabled]="Disabled">
+  <ngx-mat-color-toggle matSuffix [for]="picker"></ngx-mat-color-toggle>
+  <ngx-mat-color-picker #picker [touchUi]="touchUi" [color]="color"></ngx-mat-color-picker>
+</mat-form-field>
+<button mat-flat-button (click)="data()" color="primary">Obtener color</button>
