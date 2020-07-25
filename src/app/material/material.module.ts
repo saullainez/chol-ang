@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
@@ -37,11 +38,20 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
+import {A11yModule} from '@angular/cdk/a11y';
+import {ClipboardModule} from '@angular/cdk/clipboard';
+import {DragDropModule} from '@angular/cdk/drag-drop';
+import {PortalModule} from '@angular/cdk/portal';
+import {ScrollingModule} from '@angular/cdk/scrolling';
+import {CdkStepperModule} from '@angular/cdk/stepper';
+import {CdkTableModule} from '@angular/cdk/table';
+import {CdkTreeModule} from '@angular/cdk/tree';
 
 const MaterialModules = [
   MatAutocompleteModule,
   MatCheckboxModule,
   MatDatepickerModule,
+  MatNativeDateModule,
   MatFormFieldModule,
   MatInputModule,
   MatRadioModule,
@@ -73,7 +83,15 @@ const MaterialModules = [
   MatTooltipModule,
   MatPaginatorModule,
   MatSortModule,
-  MatTableModule
+  MatTableModule,
+  A11yModule,
+  ClipboardModule,
+  DragDropModule,
+  PortalModule,
+  ScrollingModule,
+  CdkStepperModule,
+  CdkTableModule,
+  CdkTreeModule,
 ];
 
 @NgModule({

@@ -1,0 +1,17 @@
+.footer {
+    bottom: 0;
+    width: 100%;
+    line-height: 30px;
+    font-size: 0.9em;
+    color: white;
+    text-align: center;
+    position: fixed;
+    flex-shrink: none;
+    background: #3f51b5;
+}
+
+.container {
+    width: auto;
+    padding: 12px 15px;
+    height: 50px;
+}

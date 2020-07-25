@@ -1,0 +1,67 @@
+<app-page-breadcrumb [title]="'Usuarios'" ></app-page-breadcrumb>
+<div class="grid-container">
+    <div *ngIf="users && maintenance === false">
+        <app-datatable [columns] = "Columns" [data]="users" (DeleteEvent)="delete($event)" 
+        (CreateEvent)="new($event)" url="seg/users"></app-datatable> 
+    </div>
+    <div class="mqInfo">
+        Active MediaQuery(s):
+        <ul>
+          <li *ngFor="let change of (media$ | async) as changes">
+            {{change.mqAlias}} = {{change.mediaQuery}}
+          </li>
+        </ul>
+      </div>
+    <div *ngIf="maintenance === true">
+        <mat-card>
+            <div fxLayout="row">
+                <div fxFlex = "95%" fxFlex.lt-md = "90%">
+                    <div class="title"><h2 >Mantenimiento de usuarios</h2></div>
+                </div>
+                <div fxFlex = "5%" fxFlex.lt-md = "10%" class="back">
+                    <button matTooltip="Volver" mat-mini-fab color="primary" (click)="back()">
+                        <i class="i-back" class="fas fa-arrow-left"></i>
+                      </button>
+                   
+                </div>
+            </div>
+            
+            <form fxLayout="column">
+                <div class="input-row" fxLayout="row" fxLayout.lt-md="column">
+                    <mat-form-field fxFlex class="m-r-20">
+                        <mat-label>Nombre</mat-label>
+                        <input #inputName matInput maxlength="30" [formControl]="nameFormControl" type="text" placeholder="Nombre" [(ngModel)]="user.name" name="name">
+                        <mat-error *ngIf="nameFormControl.invalid">{{getErrorRequiredMessage(nameFormControl, 'Nombre')}}</mat-error>
+                        <mat-hint align="end">{{inputName.value?.length || 0}}/30</mat-hint>
+                    </mat-form-field>
+          
+                    <mat-form-field fxFlex class="m-r-20">
+                        <mat-label>Correo electrónico</mat-label>
+                        <input #inputEmail matInput maxlength="30" [formControl]="emailFormControl" matInput type="email" placeholder="Correo electrónico" [(ngModel)]="user.email" name="email">
+                        <mat-error *ngIf="emailFormControl.invalid">{{getErrorEmailMessage()}}</mat-error>
+                        <mat-hint align="end">{{inputEmail.value?.length || 0}}/30</mat-hint>
+                    </mat-form-field>
+                </div>
+          
+                <div class="input-row" fxLayout="row" fxLayout.lt-md="column">
+                    <mat-form-field fxFlex class="m-r-20">
+                        <mat-label>Nombre de usuario</mat-label>
+                        <input #inputUsername matInput maxlength="15" [formControl]="usernameFormControl" type="text" placeholder="Nombre de usuario" [(ngModel)]="user.username" name="username">
+                        <mat-error *ngIf="usernameFormControl.invalid">{{getErrorRequiredMessage(usernameFormControl, 'Nombre de usuario')}}</mat-error>
+                        <mat-hint align="end">{{inputUsername.value?.length || 0}}/15</mat-hint>
+                    </mat-form-field>
+                    <app-select [Class]="'w-100'" fxFlex
+                    *ngIf="roles" [Placeholder]="'Roles'" [Options] = "roles" [Value]="user.role_prefix"
+                    (getValue) = "GetValue($event, 'rolPrefix')" (keypress) = "ValueKey($event, 'rolPrefix')"
+                    >
+                    </app-select>
+
+                </div>
+            </form>
+            <div class="buttons">
+                <button [disabled]="!disabledSaveButton()" mat-raised-button color="primary" matTooltip="Guardar" (click)="save()">Guardar</button>
+            </div>
+        </mat-card>
+
+    </div>
+</div>

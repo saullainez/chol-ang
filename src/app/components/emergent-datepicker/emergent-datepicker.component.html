@@ -1,0 +1,10 @@
+<form (ngSubmit)="onSubmit()">
+  <mat-form-field>
+    <app-datepicker (getDate)="GetValueChange($event, 'object')"></app-datepicker>
+  </mat-form-field>
+
+  <div class="actions">
+    <button mat-button type="button" color="primary" (click)="onCancel()">Cancelar</button>
+    <button mat-button type="submit" color="primary">Guardar</button>
+  </div>
+</form>

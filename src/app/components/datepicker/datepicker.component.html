@@ -1,0 +1,20 @@
+<!-- DATEPICKER COMPLETAMENTE DISABLED -->
+<div *ngIf="Disabled">
+  <mat-form-field appearance="fill" [ngClass]="Class">
+    <mat-label>{{ Placeholder }}</mat-label>
+    <input matInput [matDatepicker]="dp1" disabled [formControl]="Value">
+    <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
+    <mat-datepicker #dp1></mat-datepicker>
+  </mat-form-field>
+</div>
+<!-- DATEPICKER D/M/Y -->
+<div *ngIf="!Disabled">
+  <mat-form-field appearance="fill" [class]="Class">
+    <mat-label>{{ Placeholder }}</mat-label>
+    <input matInput [matDatepicker]="dp3" disabled
+    [formControl]="Value" (dateInput)="data($event.value)">
+    <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
+    <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+  </mat-form-field>
+</div>
+
