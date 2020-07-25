@@ -1,0 +1,11 @@
+<form (ngSubmit)="onSubmit()">
+  <mat-form-field>
+    <input matInput maxLength="400" name="object" [(ngModel)]="object">
+    <mat-hint align="end">{{object?.length || 0}}/400</mat-hint>
+  </mat-form-field>
+
+  <div class="actions">
+    <button mat-button type="button" color="primary" (click)="onCancel()">Cancelar</button>
+    <button mat-button type="submit" color="primary">Guardar</button>
+  </div>
+</form>

@@ -1,25 +1,37 @@
-<div class="grid-container">
-  <h1 class="mat-h1">Dashboard</h1>
-  <!-- <mat-grid-list cols="2" rowHeight="350px">
-    <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
-      <mat-card class="dashboard-card">
-        <mat-card-header>
-          <mat-card-title>
-            {{card.title}}
-            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
-              <mat-icon>more_vert</mat-icon>
-            </button>
-            <mat-menu #menu="matMenu" xPosition="before">
-              <button mat-menu-item>Expand</button>
-              <button mat-menu-item>Remove</button>
-            </mat-menu>
-          </mat-card-title>
-        </mat-card-header>
-        <mat-card-content class="dashboard-card-content">
-          <div>Card Content Here</div>
-        </mat-card-content>
-      </mat-card>
-    </mat-grid-tile>
-  </mat-grid-list> -->
-  <app-datatable [columns] = "Columns" [data]="data"></app-datatable>
-</div>
+<block-ui>
+  <div class="grid-container">
+    <h1 class="mat-h1">Dashboard</h1>
+    <!-- <app-datatable [columns] = "Columns" [data]="data" (DeleteEvent)="delete($event)"
+    (CreateEvent)="new()" url="main/producto"></app-datatable> -->
+    <!-- <div class="row">
+      <app-autocomplete [class]="'col-lg-6'" [Placeholder]="'Seleccione uno'"
+      [options]="optionsautocomplete"
+      (getValue)="GetValue($event, 'valueautocomplete')"
+      (keypress)="ValueKey($event,'valueautocomplete')">
+      </app-autocomplete>
+    </div> -->
+    <!-- <div class="row">
+      <app-select [Class]="'col-lg-6'" [Placeholder]="'Seleccione una opcion'"
+      [Options]="optionsselect" (getValue)="GetValue($event, 'value2')"
+      (keypress)="ValueKey($event,'valueselect')">
+      </app-select>
+    </div> -->
+    <!-- <div class="row">
+      <app-datepicker [Value]="'13/7/2020'" [Class]="'col-lg-6'" (getValue)="GetValue($event, 'valuedate')"></app-datepicker>
+    </div> -->
+    <div class="row">
+      <app-file-uploader [formats]="'.jpg,.png,.jpeg'" [size]="10"></app-file-uploader>
+    </div>
+    <!-- <app-checkbox [Title]="'Activo'" [Position]="'before'"
+    [Class]="'col-lg-6'" [Value]="false" (getValue)="GetValue($event, 'valuecheck')"></app-checkbox> -->
+    <!-- <app-radio-button [Options]="optionsselect" [Type]="'vertical'"
+      [Title]="'Seleccione una opcion'" (getValue)="GetValue($event, 'valueradio')">
+    </app-radio-button> -->
+    <!-- <app-slide-toggle [Title]="'Activo'" [Value]="false"
+    (getValue)="GetValue($event, 'valueslide')"></app-slide-toggle> -->
+    <br><br>
+    <app-colorpicker (getValue)="GetValue($event, 'valuecolor')"></app-colorpicker>
+    <!-- <app-datepicker-my></app-datepicker-my> -->
+    <!-- <app-datatable-configurable [columns] = "ColumnsConfigurable" [data]="data"></app-datatable-configurable> -->
+  </div>
+</block-ui>

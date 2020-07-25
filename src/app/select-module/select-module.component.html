@@ -8,6 +8,7 @@
             fxLayout.lt-sm="column" 
             fxLayoutGap="32px" 
             fxLayoutAlign="flex-start">
+    
             <div *ngFor="let module of modules" class="ripple-container mat-elevation-z4" 
             (click)='goToModule(module.uri, module.name, module.description)'
             fxFlex="0 1 calc(33.3% - 32px)"

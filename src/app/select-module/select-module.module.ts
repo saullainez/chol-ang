@@ -6,6 +6,7 @@ import { SelectModuleRoutingModule } from './select-module-routing.module';
 import { SelectModuleComponent } from './select-module.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { BlockUIModule } from 'ng-block-ui';
+import { ComponentsModule } from '../components/components.module';
 
 
 
@@ -16,6 +17,7 @@ import { BlockUIModule } from 'ng-block-ui';
     SelectModuleRoutingModule,
     MaterialModule,
     FlexLayoutModule,
+    ComponentsModule,
     BlockUIModule.forRoot()
   ]
 })
