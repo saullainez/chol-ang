@@ -12,7 +12,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import {MediaChange, MediaObserver} from '@angular/flex-layout';
 import {Observable} from 'rxjs';
 import { Role } from '../interfaces/role';
-import {FormControl, Validators} from '@angular/forms';
+import {FormControl, Validators, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-users',
@@ -20,9 +20,11 @@ import {FormControl, Validators} from '@angular/forms';
   styleUrls: ['./users.component.scss']
 })
 export class UsersComponent implements OnInit {
-  emailFormControl = new FormControl('', [Validators.required, Validators.email]);
+  edit: boolean = false;
+  /*emailFormControl = new FormControl('', [Validators.required, Validators.email]);
   nameFormControl = new FormControl('', [Validators.required]);
-  usernameFormControl = new FormControl('', [Validators.required]);
+  usernameFormControl = new FormControl({value:'', disabled:this.disabledUsername()}, [Validators.required]);*/
+  public userForm: FormGroup;
   media$: Observable<MediaChange[]>;
   @BlockUI() blockUI: NgBlockUI;
   @ViewChild(DatatableComponent) datatable: DatatableComponent;
@@ -32,7 +34,7 @@ export class UsersComponent implements OnInit {
   user: User;
   maintenance: boolean = false;
   idUser: number;
-  edit: boolean = false;
+  
   changeDatatable : boolean = false;
   Columns = [
     { def: 'id', header: 'Id', cell: (row: User) => `${row.id}` },
@@ -55,6 +57,7 @@ export class UsersComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
     this.getRoles();
     this.idUser = this.activatedRoute.snapshot.params['id'];
     if(this.idUser) {
@@ -76,6 +79,8 @@ export class UsersComponent implements OnInit {
       this.blockUI.start("Cargando datos de los usuarios");
       this.loadUsers(false);
     }
+
+    this.initUserForm();
 
   }
 
@@ -99,6 +104,7 @@ export class UsersComponent implements OnInit {
   }
 
   loadUsers(reload:boolean){
+
     this.segService.getUsersInfo().subscribe((data:any) => {
       this.users = data['users'];
       if(reload){
@@ -106,7 +112,6 @@ export class UsersComponent implements OnInit {
       }else{
         this.blockUI.stop();
       }
-      
     }, (err:any) => {
       this.error('Ocurrió un error al cargar los usuarios');
     })
@@ -164,8 +169,9 @@ export class UsersComponent implements OnInit {
   back(){
     this.maintenance = false;
     this.router.navigateByUrl('seg/users');
-    this.loadUsers(!this.edit);
-    
+    if(!this.edit){
+      this.loadUsers(!this.edit);
+    }
   }
 
   getRoles(){
@@ -185,21 +191,29 @@ export class UsersComponent implements OnInit {
   }
 
   getErrorEmailMessage() {
-    if (this.emailFormControl.hasError('required')) {
+    if (this.userForm.get('emailFormControl').hasError('required')) {
       return 'El Correo electrónico es requerido';
     }
 
-    return this.emailFormControl.hasError('email') ? 'El correo electrónico es inválido' : '';
+    return this.userForm.get('emailFormControl').hasError('email') ? 'El correo electrónico es inválido' : '';
   }
 
   getErrorRequiredMessage(formControl:any, input:any) {
-    if (formControl.hasError('required')) {
+    if (this.userForm.get(formControl).hasError('required')) {
       return 'El ' + input + ' es requerido';
     }
   }
 
+  initUserForm(){
+    this.userForm = new FormGroup({
+      'usernameFormControl': new FormControl({value:'', disabled:this.edit}, [Validators.required]),
+      'emailFormControl' : new FormControl('', [Validators.required, Validators.email]),
+      'nameFormControl' : new FormControl('', [Validators.required])
+    });
+  }
+
   disabledSaveButton(){
-    return !this.emailFormControl.invalid && !this.nameFormControl.invalid && !this.usernameFormControl.invalid && this.rolPrefix != undefined ? true : false;
+    return this.userForm.valid && this.rolPrefix != undefined ? true : false;
   }
 
 
