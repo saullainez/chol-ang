@@ -38,4 +38,9 @@ export class GlobalService {
   getRolesSelect(){
     return this.httpClient.get(this.globalclass.uri_api + 'seg/roles-select', this.options);
   }
+
+  //SALG obtiene información de los módulos para el select
+  getModulesSelect(){
+    return this.httpClient.get(this.globalclass.uri_api + 'seg/modules-select', this.options);
+  }
 }

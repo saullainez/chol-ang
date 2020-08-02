@@ -6,10 +6,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent implements OnInit {
+  optionsautocomplete: any;
 
   constructor() { }
 
   ngOnInit(): void {
+    
+    this.optionsautocomplete = ['One', 'Two', 'Three', 'Four', 'Five'];
+  }
+
+  public GetValue(event: any, variable: string) {
+    this[variable] = event;
+    console.log(this[variable]);
+  }
+
+  public ValueKey(event: any, variable: string) {
+    this[variable] = event.target.value;
   }
 
 }

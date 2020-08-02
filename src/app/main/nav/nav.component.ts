@@ -64,4 +64,8 @@ export class NavComponent {
     this.showSubmenu = this.showSubmenu === subMenu ? '' :  subMenu;
   }
 
+  reloadMenu(menus:any){
+    this.menus = menus;
+  }
+
 }
