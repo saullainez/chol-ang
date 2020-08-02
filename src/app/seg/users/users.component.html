@@ -16,12 +16,12 @@
         <mat-card>
             <div fxLayout="row">
                 <div fxFlex = "95%" fxFlex.lt-md = "90%">
-                    <div class="title"><h2 >Mantenimiento de usuarios</h2></div>
+                    <div class="title-maintenance"><h2 >Mantenimiento de usuarios</h2></div>
                 </div>
-                <div fxFlex = "5%" fxFlex.lt-md = "10%" class="back">
+                <div fxFlex = "5%" fxFlex.lt-md = "10%" class="back-maintenance">
                     <button matTooltip="Volver" mat-mini-fab color="primary" (click)="back()">
                         <i class="i-back" class="fas fa-arrow-left"></i>
-                      </button>
+                    </button>
                    
                 </div>
             </div>
@@ -58,7 +58,7 @@
 
                 </div>
             </form>
-            <div class="buttons">
+            <div class="buttons-maintenance">
                 <button [disabled]="!disabledSaveButton()" mat-raised-button color="primary" matTooltip="Guardar" (click)="save()">Guardar</button>
             </div>
         </mat-card>

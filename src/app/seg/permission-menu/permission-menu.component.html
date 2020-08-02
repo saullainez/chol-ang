@@ -1,0 +1,85 @@
+<app-page-breadcrumb [title]="'Opciones de menú'" ></app-page-breadcrumb>
+<div class="grid-container">
+    <div *ngIf="permissions_menu && maintenance === false">
+        <app-datatable [btnEdit] = "false" [btnDelete] = "false"  [columns] = "Columns" [data]="permissions_menu" (DeleteEvent)="delete($event)" 
+        (CreateEvent)="new($event)" url="seg/menu_permission"></app-datatable> 
+    </div>
+
+    <div *ngIf="maintenance === true">
+        <mat-card>
+            <div fxLayout="row">
+                <div fxFlex = "95%" fxFlex.lt-md = "90%">
+                    <div class="title-maintenance"><h2 >Mantenimiento de opciones de menú</h2></div>
+                </div>
+                <div fxFlex = "5%" fxFlex.lt-md = "10%" class="back-maintenance back-perm">
+                    <button matTooltip="Volver" mat-mini-fab color="primary" (click)="back()">
+                        <i class="i-back" class="fas fa-arrow-left"></i>
+                      </button>
+                </div>
+            </div>
+            <mat-divider></mat-divider>
+            <div fxLayout="row" class="selector"> 
+                <div fxFlex="45%" style="margin-right: 20px;">
+                    <app-select [Class]="'w-100'"  
+                    *ngIf="roles" [Placeholder]="'Seleccione un rol'" [Options] = "roles" [Value]="searchRole"
+                    (getValue) = "GetValue($event, 'searchRole')" (keypress) = "ValueKey($event, 'searchRole')"
+                    >
+                    </app-select>
+                </div>
+                <div fxFlex="45%">
+                    <app-select [Class]="'w-100'" 
+                    *ngIf="modules" [Placeholder]="'Seleccione un módulo'" [Options] = "modules" [Value]="searchModule"
+                    (getValue) = "GetValue($event, 'searchModule')" (keypress) = "ValueKey($event, 'searchModule')"
+                    >
+                    </app-select>
+                </div>
+                <div fxFlex = "5%" class="back-maintenance back-perm">
+                    <button [disabled]="!disabledSearchButton()" matTooltip="Buscar" mat-mini-fab color="primary" (click)="search()">
+                        <i class="i-back" class="fas fa-search-plus"></i>
+                    </button>
+                </div>
+
+
+            </div>
+            <div class="main-drag-drop" fxLayout="row" *ngIf="searchEnd">
+
+                <div class="dg-container" fxFlex>
+                    <h2>Por asignar</h2>
+                  
+                    <div
+                      cdkDropList
+                      #toAssignList="cdkDropList"
+                      [cdkDropListData]="toAssing"
+                      [cdkDropListConnectedTo]="[assignedList]"
+                      class="dg-list"
+                      (cdkDropListDropped)="drop($event)">
+                      <div class="dg-box" *ngFor="let sub_menu of toAssing" cdkDrag>{{sub_menu}}</div>
+                    </div>
+                </div>
+                  
+                <div class="dg-container" fxFlex>
+                    <h2>Asignados</h2>
+                  
+                    <div
+                      cdkDropList
+                      #assignedList="cdkDropList"
+                      [cdkDropListData]="assigned"
+                      [cdkDropListConnectedTo]="[toAssignList]"
+                      class="dg-list"
+                      (cdkDropListDropped)="drop($event)">
+                      <div class="dg-box" *ngFor="let item of assigned" cdkDrag>{{item}}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="buttons-maintenance" *ngIf="searchEnd">
+                <button mat-raised-button color="primary" matTooltip="Guardar" (click)="save()">Guardar</button>
+            </div>
+
+              
+              
+              
+              
+        </mat-card>
+    </div>
+
+</div>

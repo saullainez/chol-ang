@@ -10,10 +10,11 @@ import { MaterialModule } from '../material/material.module';
 import { UsersComponent } from './users/users.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { PermissionMenuComponent } from './permission-menu/permission-menu.component';
 
 
 @NgModule({
-  declarations: [SegComponent, DashboardComponent, UsersComponent],
+  declarations: [SegComponent, DashboardComponent, UsersComponent, PermissionMenuComponent],
   imports: [
     CommonModule,
     SegRoutingModule,
