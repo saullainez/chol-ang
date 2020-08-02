@@ -1,5 +1,10 @@
 <app-nav>
     <router-outlet></router-outlet>
+    <app-autocomplete [class]="'col-lg-6'" [Placeholder]="'Seleccione uno'"
+    [options]="optionsautocomplete"
+    (getValue)="GetValue($event, 'valueautocomplete')"
+    (keypress)="ValueKey($event,'valueautocomplete')">
+    </app-autocomplete>
     <app-footer></app-footer> 
 </app-nav>
 
