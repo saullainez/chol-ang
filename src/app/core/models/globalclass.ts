@@ -20,7 +20,7 @@ export class Globalclass {
     snackDuration = 5000;
 
     getDragDropDesc(element){
-        return element.id + ' - ' + element.sub_menu_desc
+        return element.id + ' - ' + element.description
     }
 
     extractIds(element:string){
