@@ -11,7 +11,6 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/dra
 import { Role } from '../interfaces/role';
 import { Module } from '../interfaces/module';
 import { DatatableComponent } from '../../components/datatable/datatable.component';
-import { NavComponent } from 'src/app/main/nav/nav.component';
 
 @Component({
   selector: 'app-permission-menu',
@@ -53,7 +52,6 @@ export class PermissionMenuComponent implements OnInit {
     this.getPermissionMenu(false);
     this.getRoles();
     this.getModules();
-    console.log(this.datatable);
   }
 
   getPermissionMenu(reload:boolean){
