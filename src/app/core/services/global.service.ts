@@ -38,4 +38,5 @@ export class GlobalService {
   getRolesSelect(){
     return this.httpClient.get(this.globalclass.uri_api + 'seg/roles-select', this.options);
   }
+
 }

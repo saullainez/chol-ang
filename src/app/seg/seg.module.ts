@@ -10,10 +10,11 @@ import { MaterialModule } from '../material/material.module';
 import { UsersComponent } from './users/users.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { RolesComponent } from './roles/roles.component';
 
 
 @NgModule({
-  declarations: [SegComponent, DashboardComponent, UsersComponent],
+  declarations: [SegComponent, DashboardComponent, UsersComponent, RolesComponent],
   imports: [
     CommonModule,
     SegRoutingModule,

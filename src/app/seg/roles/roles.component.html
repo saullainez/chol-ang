@@ -1,0 +1,65 @@
+<app-page-breadcrumb [title]="'Roles'" ></app-page-breadcrumb>
+
+<div class="grid-container">
+    
+    <div *ngIf="roles && maintenance === false">
+        <app-datatable [columns] = "Columns" [data]="roles" (DeleteEvent)="delete($event)" 
+        (CreateEvent)="new($event)" url="seg/roles"></app-datatable> 
+    </div>
+
+<div *ngIf="maintenance === true">
+        <mat-card>
+            <div fxLayout="row">
+                <div fxFlex = "95%" fxFlex.lt-md = "90%">
+                    <div class="title"><h2 >Mantenimiento de roles</h2></div>
+                </div>
+                <div fxFlex = "5%" fxFlex.lt-md = "10%" class="back">
+                    <button matTooltip="Volver" mat-mini-fab color="primary" (click)="back()">
+                        <i class="i-back" class="fas fa-arrow-left"></i>
+                      </button>
+                   
+                </div>
+            </div>
+            
+            <form fxLayout="column" [formGroup]="roleForm">
+                <div class="input-row" fxLayout="row" fxLayout.lt-md="column">
+                    <mat-form-field fxFlex class="m-r-20">
+                        <mat-label>Nombre</mat-label>
+                        <input #inputName matInput maxlength="20" formControlName="nameFormControl" type="text" placeholder="Nombre" [(ngModel)]="role.name">
+                        <mat-error *ngIf="roleForm.get('nameFormControl').invalid">{{getErrorRequiredMessage('nameFormControl', 'Nombre')}}</mat-error>
+                        <mat-hint align="end">{{inputName.value?.length || 0}}/20</mat-hint>
+                    </mat-form-field>
+
+                    <mat-form-field fxFlex class="m-r-20">
+                        <mat-label>Prefijo</mat-label>
+                        <input #inputPrefix matInput maxlength="7" formControlName="prefixFormControl" type="text" placeholder="Prefijo" [(ngModel)]="role.prefix">
+                        <mat-error *ngIf="roleForm.get('prefixFormControl').invalid">{{getErrorRequiredMessage('prefixFormControl', 'Prefijo')}}</mat-error>
+                        <mat-hint align="end">{{inputPrefix.value?.length || 0}}/7</mat-hint>
+                    </mat-form-field>
+                   
+                </div>
+          
+                <div class="input-row" fxLayout="row" fxLayout.lt-md="column">
+                    <mat-form-field fxFlex class="m-r-20">
+                        <mat-label>Descripcion</mat-label>
+                        <input #inputDescription matInput maxlength="40" formControlName="roleFormControl" type="text" placeholder="Descripción" [(ngModel)]="role.description" name="description">
+                        <mat-error *ngIf="roleForm.get('roleFormControl').invalid">{{getErrorRequiredMessage('roleFormControl', 'Descripcion')}}</mat-error>
+                        <mat-hint align="end">{{inputDescription.value?.length || 0}}/40</mat-hint>
+                    </mat-form-field>
+
+                </div>
+            
+            </form>
+            <div class="buttons">
+                <button [disabled]="!disabledSaveButton()" mat-raised-button color="primary" matTooltip="Guardar" (click)="save()">Guardar</button>
+            </div>
+        
+        </mat-card>
+    
+
+    </div>
+
+
+    
+    
+</div>
