@@ -107,7 +107,7 @@ export class RolesComponent implements OnInit {
       this.edit = false;
     }
     
-    this.initUserForm();
+    this.initRoleForm();
 
   }
 
@@ -152,7 +152,7 @@ export class RolesComponent implements OnInit {
   }
 
   
-  initUserForm(){
+  initRoleForm(){
     this.roleForm = new FormGroup({
       'nameFormControl': new FormControl('', [Validators.required]),
       'roleFormControl' : new FormControl('', [Validators.required, Validators.required]),
@@ -191,7 +191,7 @@ export class RolesComponent implements OnInit {
   }
 
   disabledSaveButton(){
-    return true;
+    return this.roleForm.valid;
   }
 
   getErrorRequiredMessage(formControl:any, input:any) {
