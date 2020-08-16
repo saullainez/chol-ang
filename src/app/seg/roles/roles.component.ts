@@ -86,7 +86,7 @@ export class RolesComponent implements OnInit {
 
     this.idRole = this.activatedRoute.snapshot.params['id'];
     this.username = this.segService.storageService.getUserSession();
-    console.log(this.username);
+
 
     if (this.idRole){
       this.edit = true;
@@ -123,7 +123,7 @@ export class RolesComponent implements OnInit {
 
   }
   delete(id) {
-    //console.log('aqui se agrega la logica del delete');
+
     const dialogRef = this.dialog.open(DialogConfirmComponent, {data:{title:'Eliminar Rol', text:'¿Está seguro de eliminar este rol?'}});
     dialogRef.afterClosed().subscribe(result => {
       if (result == true){
@@ -196,7 +196,7 @@ export class RolesComponent implements OnInit {
 
   getErrorRequiredMessage(formControl:any, input:any) {
     if (this.roleForm.get(formControl).hasError('required')) {
-      return 'El ' + input + ' es requerido';
+      return 'El campo' + input + ' es requerido';
     }
   }
 
