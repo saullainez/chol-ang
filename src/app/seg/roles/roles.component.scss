@@ -1,0 +1,39 @@
+.grid-container {
+    margin: 20px;
+}
+
+.title {
+    text-align: center !important;
+}
+
+.form-container {
+    margin: 20px;
+    display: flex;
+    flex-flow: row wrap;
+    box-sizing: border-box;
+    display: flex;
+    place-content: center;
+    align-items: stretch;
+
+}
+
+form {
+    padding : 30px;
+    text-align: center;
+}
+
+.m-r-20 {
+    margin-right: 20px;
+}
+
+.back{
+    text-align: right;
+}
+
+.i-back {
+    font-size: 10px;
+}
+
+.buttons {
+    text-align: center;
+}
