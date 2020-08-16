@@ -11,10 +11,12 @@ import { UsersComponent } from './users/users.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RolesComponent } from './roles/roles.component';
+import { PermissionMenuComponent } from './permission-menu/permission-menu.component';
+import { RolemoduleComponent } from './rolemodule/rolemodule.component';
 
 
 @NgModule({
-  declarations: [SegComponent, DashboardComponent, UsersComponent, RolesComponent],
+  declarations: [SegComponent, DashboardComponent, UsersComponent, PermissionMenuComponent, RolemoduleComponent, RolesComponen],
   imports: [
     CommonModule,
     SegRoutingModule,

@@ -18,4 +18,12 @@ export class Globalclass {
     snackWarning = "warning-snackbar";
 
     snackDuration = 5000;
+
+    getDragDropDesc(element){
+        return element.id + ' - ' + element.description
+    }
+
+    extractIds(element:string){
+        return element.split("-")[0];
+    }
 }
