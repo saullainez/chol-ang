@@ -3,4 +3,5 @@ export interface Role {
     prefix: string;
     name: string;
     description: string;
+    created_by: string;
 }
