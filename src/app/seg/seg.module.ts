@@ -16,7 +16,7 @@ import { RolemoduleComponent } from './rolemodule/rolemodule.component';
 
 
 @NgModule({
-  declarations: [SegComponent, DashboardComponent, UsersComponent, PermissionMenuComponent, RolemoduleComponent, RolesComponen],
+  declarations: [SegComponent, DashboardComponent, UsersComponent, PermissionMenuComponent, RolemoduleComponent, RolesComponent],
   imports: [
     CommonModule,
     SegRoutingModule,

@@ -196,7 +196,7 @@ export class RolesComponent implements OnInit {
 
   getErrorRequiredMessage(formControl:any, input:any) {
     if (this.roleForm.get(formControl).hasError('required')) {
-      return 'El ' + input + ' es requerido';
+      return 'El campo ' + input + ' es requerido';
     }
   }
 
